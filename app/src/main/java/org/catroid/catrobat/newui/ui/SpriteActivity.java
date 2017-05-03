@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import org.catroid.catrobat.newui.R;
+import org.catroid.catrobat.newui.data.ProjectItem;
+import org.catroid.catrobat.newui.data.serialization.ProjectSerializer;
 import org.catroid.catrobat.newui.ui.adapter.SpriteViewPagerAdapter;
 import org.catroid.catrobat.newui.ui.featureDiscovery.SpriteViewFeatureDiscoveryFactory;
 
@@ -55,6 +57,7 @@ public class SpriteActivity extends AppCompatActivity {
 
         ActivityCompat.requestPermissions(SpriteActivity.this, new String[]
                 {Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+
     }
 
     @Override

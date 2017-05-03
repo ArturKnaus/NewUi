@@ -8,15 +8,23 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import org.catroid.catrobat.newui.data.LookInfo;
+import org.catroid.catrobat.newui.data.ProjectItem;
+import org.catroid.catrobat.newui.data.SoundInfo;
+import org.catroid.catrobat.newui.data.Sprite;
+import org.catroid.catrobat.newui.data.serialization.ProjectSerializer;
 import org.catroid.catrobat.newui.ui.ProjectActivity;
 import org.catroid.catrobat.newui.ui.SpriteActivity;
 
 public class MainMenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static final String TAG = MainMenuActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +99,34 @@ public class MainMenuActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    // TODO remove callback, just for debugging purposes
+    public void onListViewClick(View view) {
+
+        ProjectItem projectItem = new ProjectItem(0, null, "Test Project");
+
+        Sprite spriteOne = new Sprite("Sprite 1");
+        Sprite spriteTwo = new Sprite("Sprite w");
+
+        LookInfo luckyLook = new LookInfo("luckyLook", null);
+        LookInfo lookyLooky = new LookInfo("lookyLooky", null);
+
+        SoundInfo soundInfo = new SoundInfo("Sound", null);
+
+
+        spriteOne.addLook(luckyLook);
+        spriteOne.addLook(lookyLooky);
+        spriteOne.addSound(soundInfo);
+
+        projectItem.addSprite(spriteOne);
+
+        ProjectSerializer projectSerializer = new ProjectSerializer();
+
+        String serializedProject = projectSerializer.serializeProject(projectItem);
+
+        Log.d(TAG, serializedProject);
     }
 
     public void onRecycleViewClick(View view) {

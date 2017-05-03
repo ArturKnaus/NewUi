@@ -11,10 +11,13 @@ public class Sprite implements Serializable, Cloneable {
     public static final String TAG = Sprite.class.getSimpleName();
     private static final long serialVersionUID = 1L;
 
+    public Sprite(String name) {
+        this.name = name;
+    }
+
     //TODO: uncomment after XStream integration
     //@XStreamAsAttribute
     private String name;
-
     private List<LookInfo> mLookList = new ArrayList<>();
     private List<SoundInfo> mSoundList = new ArrayList<>();
 
@@ -22,12 +25,27 @@ public class Sprite implements Serializable, Cloneable {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
     public List<LookInfo> getLookList() {
         return mLookList;
     }
 
     public List<SoundInfo> getSoundList() {
         return mSoundList;
+    }
+
+    public void addLook(LookInfo lookInfo) {
+        if (lookInfo != null) {
+            mLookList.add(lookInfo);
+        }
+    }
+
+    public void addSound(SoundInfo soundInfo) {
+        if (soundInfo != null) {
+            mSoundList.add(soundInfo);
+        }
     }
 
     @Override
