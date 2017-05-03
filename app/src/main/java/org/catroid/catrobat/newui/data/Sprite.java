@@ -1,5 +1,7 @@
 package org.catroid.catrobat.newui.data;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,23 +10,24 @@ public class Sprite implements Serializable, Cloneable {
 
     public static final String TAG = Sprite.class.getSimpleName();
     private static final long serialVersionUID = 1L;
+
     //TODO: uncomment after XStream integration
     //@XStreamAsAttribute
     private String name;
 
-    private List<LookInfo> lookList = new ArrayList<>();
-    private List<SoundInfo> soundList = new ArrayList<>();
+    private List<LookInfo> mLookList = new ArrayList<>();
+    private List<SoundInfo> mSoundList = new ArrayList<>();
 
     public String getName() {
         return name;
     }
 
     public List<LookInfo> getLookList() {
-        return lookList;
+        return mLookList;
     }
 
     public List<SoundInfo> getSoundList() {
-        return soundList;
+        return mSoundList;
     }
 
     @Override
@@ -41,5 +44,15 @@ public class Sprite implements Serializable, Cloneable {
 
         //TODO: check when a sprite is equal to another.
         return this.name.equals(sprite.name);
+    }
+
+    public Bitmap getThumbnail() {
+        Bitmap thumbnail = null;
+
+        if (mLookList.size() > 0) {
+            thumbnail = mLookList.get(0).getThumbnail();
+        }
+
+        return thumbnail;
     }
 }
