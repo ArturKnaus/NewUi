@@ -1,0 +1,30 @@
+def skipList = ['.idea/misc.xml',
+                '.idea/encodings.xml',
+                '.idea/vcs.xml',
+]
+
+task gitSkipWorktreeForIntellijConfigFiles {
+    doLast {
+        try {
+            for (int i = 0; i < skipList.size(); i++) {
+                String gitCmd = 'git update-index --skip-worktree ' + skipList[i]
+                gitCmd.execute().text.trim()
+            }
+        } catch (IOException exception) {
+            throw new UnsupportedOperationException("Could not find git! Maybe it is not in \$PATH variable?", exception)
+        }
+    }
+}
+
+task gitNoSkipWorktreeForIntellijConfigFiles {
+    doLast {
+        try {
+            for (int i = 0; i < skipList.size(); i++) {
+                String gitCmd = 'git update-index --no-skip-worktree ' + skipList[i]
+                gitCmd.execute().text.trim()
+            }
+        } catch (IOException exception) {
+            throw new UnsupportedOperationException("Could not find git! Maybe it is not in \$PATH variable?", exception)
+        }
+    }
+}

@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'checkstyle'
 
 apply from: 'gradle/code_quality_tasks.gradle'
+apply from: 'gradle/intelij_tasks.gradle'
 
 android {
     compileSdkVersion 25
